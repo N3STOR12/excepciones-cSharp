@@ -10,32 +10,28 @@ namespace excepciones_cSharp
     {
         static void Main(string[] args)
         {
-           
+            StreamWriter sw = new StreamWriter("ejemplo.txt", true);
+            //Para sobreescribir es false, para escribir es true
+            //se utiliza una "," despues del documento. 
+            //Si el archivo no existe lo crea
+            //Si ya existe, escribira en el
 
-            try
+            string[] lines = new string[2];
+
+            Console.Write("Introduce tu nombre: ");
+            lines[0] = Console.ReadLine();
+
+            Console.Write("Introduce tu apellido: ");
+            lines[1] = Console.ReadLine();
+
+            foreach (string line in lines)
             {
-                Console.Write("Introduce un numero: ");
-                int num1 = Convert.ToInt32(Console.ReadLine());
-                Console.Write("Introduce otro numero: ");
-               int num2 = Convert.ToInt32(Console.ReadLine());
-
-                Console.WriteLine(num1 / num2);
-                Console.ReadKey();
+                sw.WriteLine(line);
             }
-            catch (DivideByZeroException e)
-            {
-                Console.WriteLine(e.Message);
-            }
-            catch (FormatException e)
-            {
-                Console.WriteLine(e.Message);
-            }
-            finally
-            {
+            sw.Close(); //Cierre del archivo, se debe de hacer
 
-            }
-
-
+            Console.WriteLine("Escribiendo en el archivo...");
+            Console.ReadKey();
         }
     }
 }
